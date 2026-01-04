@@ -1,0 +1,14 @@
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const targetUrl = url.href.replace('yourdomain.com', 'emos.lol');
+
+    return fetch(targetUrl, {
+      headers: request.headers,
+      cf: {
+        cacheEverything: true,  // 全资源缓存
+        polish: 'lossless'      // 2026年新增压缩优化
+      }
+    });
+  }
+};
